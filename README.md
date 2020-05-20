@@ -1,3 +1,11 @@
+* Deployed to Github Pages with gh-pages
+```
+npm run deploy
+```
+This will do:
+1. npm run build, which is react build
+2. deploy "gh-pages" branch on Github Pages
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
