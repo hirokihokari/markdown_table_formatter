@@ -28,26 +28,42 @@ const Center = styled.div`
   line-height: 500px;
 `
 
+const Button = styled.button`
+`
+
 export default () => {
   const [ inputText, setInputText ] = useState('ee')
   const [ resultText, setResultText ] = useState('ee')
 
+  const aioClick = () => {
+    navigator.clipboard.readText().then(text => {
+      navigator.clipboard.writeText(format(text))
+    })
+  }
+
+  const onInputChange = (value) => {
+    setInputText(value)
+    setResultText(format(value))
+  }
+
   const format = (value) => {
     const formatter = new Formatter(value)
 
-    setInputText(value)
-    setResultText(formatter.formatted)
+    return formatter.formatted
   }
 
   return (
-    <FormatArea>
-      <Left>
-        <Input text={inputText} onInputChange={format}/>
-      </Left>
-      <Center>=></Center>
-      <Right>
-        <Result text={resultText}/>
-      </Right>
-    </FormatArea>
+    <>
+      <Button onClick={() => aioClick() }>AIO Click</Button>
+      <FormatArea>
+        <Left>
+          <Input text={inputText} onInputChange={onInputChange}/>
+        </Left>
+        <Center>=></Center>
+        <Right>
+          <Result text={resultText}/>
+        </Right>
+      </FormatArea>
+    </>
   )
 }
